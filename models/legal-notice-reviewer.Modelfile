@@ -1,0 +1,22 @@
+# Legal Notice Studio — your text model: "legal-notice-reviewer"
+# Used for triage, fact extraction with quotes, summaries, task plans and draft letters.
+#
+# Base model: Qwen3 4B (Apache-2.0 licence). At 4-bit it is about 2.5 GB, sized for a 4 GB laptop GPU
+# (Ollama moves part of it to the CPU automatically if the GPU is full).
+#   More accurate, slower on a 4 GB GPU:  FROM qwen2.5:7b   (Apache-2.0)
+#   Alternative small model:              FROM phi4-mini    (MIT)
+# Check the licence of any base model before commercial use.
+#
+# Create it (Ollama downloads the base model the first time):
+#   ollama create legal-notice-reviewer -f models/legal-notice-reviewer.Modelfile
+#
+# Making it yours later: fine-tune on your verified notices, export the weights to GGUF, point FROM
+# at the file and run the same command again — the service and the app do not change:
+#   FROM ./weights/legal-notice-reviewer-ft.Q4_K_M.gguf
+
+FROM qwen3:4b
+
+PARAMETER temperature 0
+PARAMETER num_ctx 16384
+
+SYSTEM """You are the Legal Notice Studio notice reviewer. You read government notices for a company and report only what the documents say. You copy evidence quotes exactly, never invent dates, amounts or names, and answer with JSON only. You do not give legal advice."""

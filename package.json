@@ -1,0 +1,30 @@
+{
+  "name": "legal-notice-studio-llm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local LLM service for Legal Notice Studio: runs your own open-weights models (Ollama, llama.cpp, vLLM, LM Studio) behind the same contract the backend uses for the Claude API.",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false src/main.ts",
+    "start": "tsx src/main.ts",
+    "check": "tsx scripts/check.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.1.1",
+    "ajv": "^8.20.0",
+    "fastify": "^5.12.8",
+    "unpdf": "^2.2.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "vitest": "^5.1.0"
+  }
+}

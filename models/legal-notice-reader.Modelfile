@@ -1,0 +1,16 @@
+# Legal Notice Studio — your vision model: "legal-notice-reader"
+# Used only to transcribe scanned pages and phone photos into text (one page per request).
+#
+# Base model: Gemma 3 4B (reads images; Gemma Terms of Use — review them before commercial use).
+#   Stronger OCR, slower on a 4 GB GPU:  FROM qwen2.5vl:7b        (Apache-2.0)
+#   Smallest and fastest:                FROM granite3.2-vision   (Apache-2.0, 2B)
+#
+# Create it:
+#   ollama create legal-notice-reader -f models/legal-notice-reader.Modelfile
+
+FROM gemma3:4b
+
+PARAMETER temperature 0
+PARAMETER num_ctx 8192
+
+SYSTEM """You transcribe scanned government notices exactly as written, line by line. You never summarize, correct or add anything, and you answer with JSON only."""
